@@ -1,0 +1,114 @@
+<html lang="pt-BR">
+
+<head>
+    <title>Aula 02 React(index com JSX)</title>
+</head>
+<style type="text/css">
+    .links {
+        font-family: 'Verdana';
+        font-size: 25px;
+        background-color: #f5f5f5;
+        color: red;
+
+    }
+    
+    .links li {
+        display: inline-block;
+        margin-left: 1%;
+    }
+    
+    .links a {
+        color: red;
+        text-decoration: none;
+
+    }
+    
+    .links a:hover {
+        color: rgb(197, 107, 107);
+        text-decoration: none;
+    }
+    .texto{
+        font-weight: bolder;
+        color: salmon;
+    }
+</style>
+<h1>Menu com JSX:</h1>
+
+<body>
+    <div id="root" style="background-color:grey"></div>
+
+    <script src="https://unpkg.com/react@17/umd/react.development.js" crossorigin></script>
+    <script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js" crossorigin></script>
+    <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+    <!-- <script src="index.js"></script> -->
+
+    <script type="text/babel">
+
+       function getLanguage(){
+           if (navigator.language == 'pt-BR'){
+            return <h1>Pagina Brasileira</h1>;
+           }
+           else{
+            return <h1>Pagina estrangeira</h1>;
+           }
+       }
+   
+        var menu = null;
+
+        if (navigator.language == 'pt-BR'){
+                menu = {
+                    home : 'Pagina Inicial',
+                    Empresa : 'PlayStation BR'
+                }
+            }else{
+                menu = {
+                    home :'Home',
+                    Empresa : 'PlayStation USA'
+                }
+            }
+
+
+        // para saber qual idioma da pagina:   
+        // alert(navigator.language);
+        
+        // exemplos de funcao:
+        // function getMenu(){
+        //     const nome = 'viny';
+        //     if (navigator.language == 'pt-br'){
+        //         menu = {
+        //             home : 'Pagina Inicial',
+        //             Empresa : 'PlayStation BR'
+        //         }
+        //     }else{
+        //         menu = {
+        //             home :'Home',
+        //             Empresa : 'PlayStation USA'
+        //         }
+        //     }
+        // }
+       
+       
+        const name = 'Viny';
+        const total = 2+5;
+       
+        // getMenu();
+        // alert(nome);
+
+        const nav = (
+        <nav className='links'>
+            <ul>
+                <li> <a href="#">{menu.home}</a></li>
+                <li> <a href="#">{menu.Empresa}</a></li>
+                <li> <a href="#">Contatos</a></li>
+                <li> <a href="#">{name}</a></li>
+                <li> <a href="#">{total}</a></li>
+            </ul>
+            <div className="texto">{getLanguage()}</div>
+        </nav>
+        ) 
+        ReactDOM.render(nav, document.getElementById('root'));
+    </script>
+
+</body>
+
+</html>
