@@ -94,6 +94,11 @@
         // getMenu();
         // alert(nome);
 
+
+        // Atualizando interface em tempo real
+        function refresh(){
+
+        
         const nav = (
         <nav className='links'>
             <ul>
@@ -104,9 +109,12 @@
                 <li> <a href="#">{total}</a></li>
             </ul>
             <div className="texto">{getLanguage()}</div>
+            <div className="texto">{new Date().toLocaleTimeString()}</div>
         </nav>
         ) 
         ReactDOM.render(nav, document.getElementById('root'));
+    }
+    setInterval(refresh,1000);
     </script>
 
 </body>
