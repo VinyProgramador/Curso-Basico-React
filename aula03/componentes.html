@@ -14,27 +14,37 @@
     <!-- <script src="index.js"></script> -->
 
     <script type="text/babel">
-        // Exemplo com Function para criar Componentes, para utilizar este exemplo deixe o codigo comentado da linha 33 a 37.
-           function Welcome(props){
-                return <h1>Olá,{props.name}</h1>
-           }
-           function Teste(props){
-                return <button>{props.botao}</button>
-           }
-           const elemento = <div>
-                            <Welcome name="Vinicius de Almeida Nunes"/>
-                            <Welcome name=" Programador"/> 
-                            <Teste botao="enviar"/> 
-                            </div>
-           ReactDOM.render(elemento, document.getElementById('root'));
+        function App(){
+           return(
+            <div>
+                <h1>Componente App</h1>
+                <span>Componente App, e usado no começo da estrutura do codigo, para renderizar ele no final como principal.</span>
+            </div>
+           )
+        }
+        ReactDOM.render(<App />, document.getElementById('root'));
+
+        // Exemplo com Function para criar Componentes
+        //    function Welcome(props){
+        //         return <h1>Olá,{props.name}</h1>
+        //    }
+        //    function Teste(props){
+        //         return <button>{props.botao}</button>
+        //    }
+        //    const elemento = <div>
+        //                     <Welcome name="Vinicius de Almeida Nunes"/>
+        //                     <Welcome name=" Programador"/> 
+        //                     <Teste botao="enviar"/> 
+        //                     </div>
+        //    ReactDOM.render(elemento, document.getElementById('root'));
            
         //  Exemplo com ES6 Para criar Componentes.
-           class Welcome2 extends React.Component{
-               render(){
-                return <h1>Teste com,{this.props.name}</h1>
-               } 
-           }
-           ReactDOM.render(<Welcome2 name="ES6"/>, document.getElementById('root'));
+        //    class Welcome2 extends React.Component{
+        //        render(){
+        //         return <h1>Teste com,{this.props.name}</h1>
+        //        } 
+        //    }
+        //    ReactDOM.render(<Welcome2 name="ES6"/>, document.getElementById('root'));
 
     </script>
 
