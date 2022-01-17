@@ -1,0 +1,43 @@
+<html lang="pt-BR">
+
+<head>
+    <title>Aula 03 React(Componentes e Props)</title>
+</head>
+
+
+<body>
+    <div id="root" style="background-color:grey;display:inline-flex;border-radius: 5px; "></div>
+
+    <script src="https://unpkg.com/react@17/umd/react.development.js" crossorigin></script>
+    <script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js" crossorigin></script>
+    <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+    <!-- <script src="index.js"></script> -->
+
+    <script type="text/babel">
+        // Exemplo com Function para criar Componentes, para utilizar este exemplo deixe o codigo comentado da linha 33 a 37.
+           function Welcome(props){
+                return <h1>Olá,{props.name}</h1>
+           }
+           function Teste(props){
+                return <button>{props.botao}</button>
+           }
+           const elemento = <div>
+                            <Welcome name="Vinicius de Almeida Nunes"/>
+                            <Welcome name=" Programador"/> 
+                            <Teste botao="enviar"/> 
+                            </div>
+           ReactDOM.render(elemento, document.getElementById('root'));
+           
+        //  Exemplo com ES6 Para criar Componentes.
+           class Welcome2 extends React.Component{
+               render(){
+                return <h1>Teste com,{this.props.name}</h1>
+               } 
+           }
+           ReactDOM.render(<Welcome2 name="ES6"/>, document.getElementById('root'));
+
+    </script>
+
+</body>
+
+</html>
