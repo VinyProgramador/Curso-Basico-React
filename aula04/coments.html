@@ -1,0 +1,76 @@
+<html>
+
+<head>
+</head>
+
+<body>
+	<div id="root" style="background-color: #c0c0c0;"></div>
+
+	<script src="https://unpkg.com/react@16/umd/react.development.js" crossorigin></script>
+  	<script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js" crossorigin></script>
+  	<script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+
+ 	<script type="text/babel">
+//  Este componente esta sendo convertido uma funçao para poder facilitar e poder usufluir da reutilização do codigo
+            function formaDate(date){
+                return date.toLocaleDateString();
+            }
+
+//  Este componente esta sendo convertido uma funçao para poder facilitar e poder usufluir da reutilização do codigo
+            function Avatar(props){
+                return (
+                    <img className="Avatar"
+                     src={props.user.avatarURL}
+                     alt={props.user.name}
+                     />
+                );
+            }
+//  Este componente esta sendo convertido uma funçao para poder facilitar e poder usufluir da reutilização do codigo
+            function UserInfo(props){
+                return (
+                    <div className="UserInfo">
+                        <Avatar user={props.user}/>
+                        <div className="UserInfo-name">
+                            {props.user.name}
+                        </div>
+                    </div>
+                );
+            }
+//  Este componente esta sendo convertido uma funçao para poder facilitar e poder usufluir da reutilização do codigo    
+            function Comments(props){
+                return (
+                    <div className="Comment">
+                           <UserInfo user={props.author}/>
+                            <div className="Comment-text">
+                                {props.text}
+                            </div>
+                            <div className="Comment-text">
+                                {formaDate(props.date)}
+                            </div>
+                    </div>
+                );
+            }
+
+            const comment = {
+                date: new Date(),
+                text: 'Este post é legal!',
+                author:{
+                    name: 'Vinicius de Almeida',
+                    avatarURL: 'https://scontent.fcgh10-1.fna.fbcdn.net/v/t39.30808-1/p160x160/235252432_593361801651866_1121247714162455346_n.jpg?_nc_cat=103&ccb=1-5&_nc_sid=7206a8&_nc_eui2=AeFHSPHZ5rCn11iH6P5XO3W1B9n3KzG_4FoH2fcrMb_gWtzqY4geHk-T7ZMzTyHjVUbUYDy6Vy5_V4OnvDnYJqdr&_nc_ohc=_7JlO6kGeyQAX8JBv-y&_nc_ht=scontent.fcgh10-1.fna&oh=00_AT-DeZ0412AykT0UCW6HJskGbUnoGejzDapDmTbKMjGr7w&oe=61EBD877',
+                },
+            };
+
+            const app = (<div>
+                <Comments
+                            date={comment.date}
+                            text={comment.text}
+                            author={comment.author}
+                            />
+                        </div>)
+
+            ReactDOM.render(app, document.getElementById('root'));
+ 	</script>
+
+</body>
+</html>
+
