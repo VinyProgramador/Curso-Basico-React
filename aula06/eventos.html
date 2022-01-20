@@ -1,0 +1,76 @@
+<html lang="pt-BR">
+
+<head>
+    <title>Aula 06 React (Manipulando eventos)</title>
+</head>
+
+<body>
+    <div id="root" style="background-color:grey; height: 40px;width: 90px; border-radius: 5px;"></div>
+
+    <script src="https://unpkg.com/react@17/umd/react.development.js" crossorigin></script>
+    <script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js" crossorigin></script>
+    <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+
+
+    <style type="text/css">
+        .botao{
+            margin-top: 12%;
+            margin-left: 30%;
+            border-radius: 5px;
+            border: none;
+            background-color: cadetblue;
+            color: #f5f5f5;
+        }
+        .botao:hover{
+            background-color: #7eb5b6;
+        }
+    </style>
+
+    <script type="text/babel">
+
+    // function Form(){
+    //      function handleSubmit(e){
+    //          e.preventDefault();
+    //          console.log("Enviando...");
+    //      }
+    //           return(
+    //               <form onSubmit={handleSubmit}>
+    //                 <center>
+    //                    <button className='botao' type="submit">ENVIAR</button>
+    //                 </center>
+    //               </form>
+    //           );
+                 
+    //      }
+    
+    // ReactDOM.render(<Form/>, document.getElementById('root'));
+     
+
+    class Toggle extends React.Component{
+        constructor(props){
+            super(props);
+            this.state ={isToggleOn:true}
+
+            this.handleClick = this.handleClick.bind(this);
+        }
+
+        handleClick(){
+            this.setState(prevState =>({
+                isToggleOn:!prevState.isToggleOn
+            }));
+        }
+        render(){
+            return(
+                <button className='botao' onClick={this.handleClick}>
+                      {this.state.isToggleOn? 'ON' :'OF'}
+                </button> 
+            );
+        }
+    }
+        ReactDOM.render(<Toggle/>, document.getElementById('root'));
+
+    </script>
+
+</body>
+
+</html>
