@@ -1,6 +1,7 @@
 import logo from './logo.svg';
 import './App.css';
 import React from 'react';
+import 'bootstrap/dist/css/bootstrap.min.css'
 
 let productList =[
     {name: "PSP", price:700, info:"PlayStation Portable(PSP), fabricado pela Sony."},
@@ -24,12 +25,14 @@ class Product extends React.Component{
          this.setState({
             qtd: this.state.qtd + 1
          });
+         this.props.handleTotal(this.props.price)
       }
 
       remover(){
         this.setState({
            qtd: this.state.qtd - 1
         });
+        this.props.handleTotal(-this.props.price)
      }
 
      mostrarInfo(){
@@ -43,17 +46,17 @@ class Product extends React.Component{
                       <h5>{this.props.name}: Valor{this.props.price}</h5>
                    </div>
                    <div className="col-sm-2 text-right">
-                       Quantidade: {this.state.qtd}
+                       <p className="txtquantidade">Quantidade:</p> {this.state.qtd}
                    </div>   
                      
                    <div className="row btn-toolbar">
                        <div className="col-6">
-                             <button onClick={this.mostrarInfo}>Informações do Produto</button>
+                             <button className="botaoinfo" onClick={this.mostrarInfo}>Informações do Produto</button>
                        </div>
 
                        <div className="col-6 text-right">
-                             <button onClick={this.add}>Adicionar +1</button>
-                             <button onClick={this.remover} disabled={this.state.qtd < 1}>Remover -1</button>
+                             <button className="botaoadd" onClick={this.add}>Adicionar +1</button>&nbsp;
+                             <button className="botaoremove" onClick={this.remover} disabled={this.state.qtd < 1}>Remover -1</button>
                        </div>
                    </div>    
                </div>
@@ -62,13 +65,35 @@ class Product extends React.Component{
        );
      }
  }
+
 // Segundo Componente
+class Total extends React.Component{
+  constructor(props){
+    super(props);
+  }
+  render(){
+    let total = this.props.total.toFixed(2);
+    return(
+        <div className="divTotal">
+            <h3 className="row">
+              <span className="col-6">Valor total dos Produtos</span>
+              <span className="col-6">R$:{total}</span>
+            </h3>
+            
+        </div>
+    );
+  }
+}
+
+// Terceiro Componente
 class ProductList extends React.Component{
   constructor(props){
    super(props);
      this.state={
-        ProductList: ""
+        ProductList: "",
+        total: 0
       };
+      this.calcularTotal = this.calcularTotal.bind(this);
     }
 
     componentDidMount(){
@@ -77,20 +102,26 @@ class ProductList extends React.Component{
      },1000);
     }
 
+    calcularTotal(price){
+        this.setState({
+           total: this.state.total + price 
+        });
+    }
+
     render(){
       if (!this.state.productList) return <p>Carregando Produtos...</p>
 
       var component = this; 
       var products = this.state.productList.map(function(product){
           return(
-            <Product name={product.name}
-            price={product.price}
-            info={product.info}/>
+            <Product name={product.name}price={product.price}info={product.info} handleTotal={component.calcularTotal}/>
           );
       });  
-       return(
+       
+      return(
          <div>
          {products}
+         <Total total ={this.state.total}/>
          </div>
        );
     }
@@ -99,7 +130,7 @@ class ProductList extends React.Component{
 
 function App() {
   return (
-    <div>
+    <div className="container">
       <ProductList/>    
     </div>
   );
